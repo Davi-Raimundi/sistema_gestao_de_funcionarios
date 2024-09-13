@@ -1,0 +1,91 @@
+SET SQL_SAFE_UPDATES = 0;
+DROP DATABASE IF EXISTS gestao_funcionarios;
+CREATE DATABASE gestao_funcionarios;
+USE gestao_funcionarios;
+
+CREATE TABLE departamentos(
+    id_departamento INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE funcionarios(
+    id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    cargo VARCHAR(100) NOT NULL,
+    salario DECIMAL(10,2) NOT NULL,
+    id_departamento INT,
+    FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
+);
+
+CREATE TABLE salarios(
+    id_salario INT AUTO_INCREMENT PRIMARY KEY,
+    id_funcionario INT,
+    FOREIGN KEY (id_funcionario) REFERENCES funcionarios(id_funcionario),
+    data DATE NOT NULL,
+    valor DECIMAL(10,2) NOT NULL
+);
+
+INSERT INTO departamentos (nome) VALUES
+('Programadores Profissionais'),
+('Programadores Mestres'),
+('Programadores Experientes'),
+('Programadores Avançados'),
+('Programadores Iniciantes');
+
+INSERT INTO funcionarios (nome, cargo, salario, id_departamento) VALUES
+('Davi', 'professional', '25000.00', '1'),
+('Ryan', 'mestre', '20000.00', '2'),
+('Fernando', 'experiente', '15000.00', '3'),
+('Branyan', 'avançado', '10000.00', '4'),
+('Warley', 'iniciante', '5000.00', '5');
+
+INSERT INTO salarios (id_funcionario, data, valor) VALUES
+(1, '2024-09-01', '25000.00'),
+(2, '2024-02-01', '20000.00'),
+(3, '2024-01-01', '15000.00'),
+(4, '2024-04-21', '10000.00'),
+(5, '2025-01-01', '5000.00');
+
+-- Consultas
+
+-- Listar os dados dos funcionários e seus respectivos departamentos
+SELECT f.id_funcionario, f.nome AS funcionario, f.cargo, f.salario, d.nome AS departamento
+FROM funcionarios f
+JOIN departamentos d ON f.id_departamento = d.id_departamento;
+
+-- Mostrar o salário total de cada departamento
+SELECT d.nome AS departamento, SUM(f.salario) AS salario_total
+FROM funcionarios f
+JOIN departamentos d ON f.id_departamento = d.id_departamento
+GROUP BY d.nome;
+
+-- Verificar os salários históricos de um funcionário específico (por exemplo, funcionário com ID 1)
+SELECT h.data, h.valor
+FROM salarios h
+WHERE h.id_funcionario = 1
+ORDER BY h.data;
+
+-- Atualizar o salário de um funcionário (por exemplo, funcionário com ID 1)
+UPDATE funcionarios
+SET salario = 27000.00
+WHERE id_funcionario = 1;
+
+-- Atualizar o departamento de um funcionário (por exemplo, funcionário com ID 1)
+UPDATE funcionarios
+SET id_departamento = 2
+WHERE id_funcionario = 1;
+
+-- Excluir um funcionário (por exemplo, funcionário com ID 1)
+-- Primeiro, remover os registros de salário relacionados
+DELETE FROM salarios WHERE id_funcionario = 1;
+
+-- Depois, excluir o funcionário
+DELETE FROM funcionarios WHERE id_funcionario = 1;
+
+-- Excluir um departamento (por exemplo, departamento com ID 1)
+-- Primeiro, garantir que não há funcionários associados a este departamento
+DELETE FROM departamentos WHERE id_departamento = 1;
+
+-- Listar os nomes dos funcionários
+SELECT f.nome AS funcionario
+FROM funcionarios f;
