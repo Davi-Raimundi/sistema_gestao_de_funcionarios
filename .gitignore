@@ -1,0 +1,18 @@
+# Ignorar arquivos temporários do sistema
+*.log
+*.tmp
+
+# Ignorar arquivos de configuração do editor
+.vscode/
+.idea/
+
+# Ignorar arquivos de banco de dados
+*.db
+*.sql
+
+# Ignorar arquivos de backup
+*.bak
+
+# Ignorar diretórios de dependências
+node_modules/
+vendor/
