@@ -1,0 +1,54 @@
+Objetivo do Projeto
+
+O projeto "Gestão de Funcionários" tem como objetivo criar e gerenciar um banco de dados SQL para armazenar informações sobre funcionários, departamentos e gerenciamento dentro de uma organização de tecnologia de funcionários. O sistema permite o gerenciamento eficiente de dados relacionados aos funcionários, suas posições e revisões, e fornece uma base para consultas, análises e operações
+
+Descrição do Banco de Dados
+
+O banco de dados gestao_funcionariosé com
+
+departamentos : Armazena informa
+funcionarios :
+salários : Regi
+Estrutura das Tabelas
+
+departamentos
+
+id_departamento(INT, AU
+nome(VARRAR(
+funcionários
+
+id_funcionario(INT, AUTO_I
+nome(VARCH
+cargo(VARCH
+salario(
+id_departamento(EMid_departamentonão tádepartamentos.
+salários
+
+id_salario(
+id_funcionario(INTid_funcionariona tabela `funcionarios.
+data(
+valor(DECI
+Consultas e Operações
+
+O banco de dados inclui várias consultas e operações para gerenciamento e análise
+
+Listar Funcionários e Departamentos : Recu
+Mostrar Salário Total por Departamento : C
+Ver Salários Históricos de um Funcionário:Obtenha o
+Atualizar Salário de um Funcionário : Pe
+Atualizar Departamento de um Funcionário: Permitir
+Excluir um Funcional :
+Excluir um Departamento : Remove um departamento, desde que não haja funcionários associados a ele.
+Listar Nomes de Funcionários : Recupera uma lista com os nomes dos funcionários.
+Procedimentos e Regras
+
+Atualizações e Exclusões : Antes de realizar exclusões de departamentos, deve-se garantir que nenhum funcionário esteja associado ao departamento para evitar transparência de integridade referencial.
+Consistência dos Dados : Após cada atualização ou exclusão, é importante verificar se os dados permanecem consistentes e que todas as obrigações respeitam as restrições e chaves estrangeiras condicionais.
+Objetivos de Aprendizagem
+
+Este projeto visa ensinar as seguintes habilidades:
+
+Criação e gerenciamento de um banco de dados relacional.
+Definição de tabelas e relacionamentos entre elas.
+Realização de operações CRUD (Create, Read, Update, Delete) em um banco de dados SQL.
+Construção de consultas SQL para análise de dados e relatórios.
