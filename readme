@@ -1,0 +1,61 @@
+# Gestão de Funcionários
+
+Este projeto contém um banco de dados SQL para gerenciar funcionários e suas informações salariais. O banco de dados inclui tabelas para departamentos, funcionários e salários. Ele também inclui exemplos de consultas para listar dados, atualizar registros e excluir entradas.
+
+## Estrutura do Banco de Dados
+
+O banco de dados `gestao_funcionarios` possui as seguintes tabelas:
+
+### `departamentos`
+
+- `id_departamento` (INT, AUTO_INCREMENT, PRIMARY KEY): Identificador único do departamento.
+- `nome` (VARCHAR(50), NOT NULL): Nome do departamento.
+
+### `funcionarios`
+
+- `id_funcionario` (INT, AUTO_INCREMENT, PRIMARY KEY): Identificador único do funcionário.
+- `nome` (VARCHAR(100), NOT NULL): Nome do funcionário.
+- `cargo` (VARCHAR(100), NOT NULL): Cargo do funcionário.
+- `salario` (DECIMAL(10,2), NOT NULL): Salário do funcionário.
+- `id_departamento` (INT): Identificador do departamento ao qual o funcionário pertence (chave estrangeira).
+
+### `salarios`
+
+- `id_salario` (INT, AUTO_INCREMENT, PRIMARY KEY): Identificador único do registro de salário.
+- `id_funcionario` (INT): Identificador do funcionário (chave estrangeira).
+- `data` (DATE, NOT NULL): Data do registro de salário.
+- `valor` (DECIMAL(10,2), NOT NULL): Valor do salário registrado.
+
+## Instruções para Uso
+
+1. **Configuração do Banco de Dados**
+
+   Execute o seguinte script SQL para criar o banco de dados e as tabelas:
+
+   
+   SET SQL_SAFE_UPDATES = 0;
+   DROP DATABASE IF EXISTS gestao_funcionarios;
+   CREATE DATABASE gestao_funcionarios;
+   USE gestao_funcionarios;
+
+   CREATE TABLE departamentos(
+       id_departamento INT AUTO_INCREMENT PRIMARY KEY,
+       nome VARCHAR(50) NOT NULL
+   );
+
+   CREATE TABLE funcionarios(
+       id_funcionario INT AUTO_INCREMENT PRIMARY KEY,
+       nome VARCHAR(100) NOT NULL,
+       cargo VARCHAR(100) NOT NULL,
+       salario DECIMAL(10,2) NOT NULL,
+       id_departamento INT,
+       FOREIGN KEY (id_departamento) REFERENCES departamentos(id_departamento)
+   );
+
+   CREATE TABLE salarios(
+       id_salario INT AUTO_INCREMENT PRIMARY KEY,
+       id_funcionario INT,
+       FOREIGN KEY (id_funcionario) REFERENCES funcionarios(id_funcionario),
+       data DATE NOT NULL,
+       valor DECIMAL(10,2) NOT NULL
+   );
