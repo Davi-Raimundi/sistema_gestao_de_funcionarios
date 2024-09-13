@@ -59,3 +59,8 @@ O banco de dados `gestao_funcionarios` possui as seguintes tabelas:
        data DATE NOT NULL,
        valor DECIMAL(10,2) NOT NULL
    );
+
+## Licença
+
+Este projeto é licenciado sob a [Licença MIT](LICENSE). Veja o arquivo `LICENSE` para mais detalhes.
+
